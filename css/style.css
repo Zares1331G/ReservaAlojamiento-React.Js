@@ -1,0 +1,30 @@
+.jumbotron{
+    
+    border-radius: 0%;
+    background-color:#00CEED;
+    margin-bottom: 0%;
+}
+.filtro{
+    background-color:#007BED;
+    width: 100%;
+    margin: 0%;
+    padding-top: 12px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.btn{
+    width: 100%;
+    border-radius: 0%;
+    background-color: #1FCCCC;
+}
+.card{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.icon{
+    font-size: 20px;
+    margin-right: 8px;    
+}
+.photos{
+    margin-top: 0%;
+}
