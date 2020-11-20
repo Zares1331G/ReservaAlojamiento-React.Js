@@ -13,24 +13,27 @@ class Filtros extends React.Component {
         return(
             <div className="form row filtro">
                 <div className="form-group col-sm-3">
-                    <input class="form-control input-field" type="date" name="infentrada" value="" />
+                    <input className="form-control input-field" type="date" name="infentrada" />
                 </div>
                 <div className="form-group col-sm-3">
-                    <input className="form-control input-field" type="date" name="infsalida" value="" />
+                    <input className="form-control input-field" type="date" name="infsalida" />
                 </div>
                 <div className="form-group col-sm-2">
-                    <select className="form-control">
-                        {this.state.countrys.map(country=> {return(<option value={country}>{country}</option>)})}
+                    <select className="form-control" >
+                        {this.state.countrys.map((country,index)=> 
+                        {return(<option key={index} value={country}>{country}</option>)})}
                     </select>
                 </div>
                 <div className="form-group col-sm-2">
                     <select className="form-control">
-                        {this.state.prices.map(price=>{return(<option value={price}>{price}</option>)})}
+                        {this.state.prices.map((price,index)=>
+                        {return(<option key={index} value={price}>{price}</option>)})}
                     </select>
                 </div>
                 <div className="form-group col-sm-2">
                     <select className="form-control">
-                    {this.state.sizes.map(size=>{return(<option value={size}>{size}</option>)})}
+                        {this.state.sizes.map((size,index)=>
+                        {return(<option key={index} value={size}>{size}</option>)})}
                     </select>
                 </div>
             </div>            

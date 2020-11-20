@@ -8,9 +8,9 @@ class Container extends React.Component {
         return (
           <div className="container">
               <div className="row">
-              {hotelsData.map(item=>{
+              {hotelsData.map((item,index)=>{
                 return(
-                  <Contenedor item={item}/>                
+                  <Contenedor item={item} key={index}/>                
                   )})
               }              
               </div>                              
