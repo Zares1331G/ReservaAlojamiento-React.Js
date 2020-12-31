@@ -7,21 +7,16 @@ class Filtros extends React.Component {
         super(props);
         this.state = {country: "Todos los paises"}
         this.state = {price : "Todos los precios"}
-        this.state = {size : "Todos los tamaños"}
-        
+        this.state = {size : "Todos los tamaños"}       
+    }
     
-        this.handleChangeCountry = this.handleChangeCountry.bind(this);
-        this.handleChangePrice = this.handleChangePrice.bind(this);
-        this.handleChangeSize = this.handleChangeSize.bind(this);
-      }
-    
-      handleChangeCountry(event) {
+      handleChangeCountry = (event) => {
         this.setState({country: event.target.value});
         }
-      handleChangePrice(event) {
+      handleChangePrice = (event) => {
         this.setState({price: event.target.value});
         }
-      handleChangeSize(event) {
+      handleChangeSize = (event) => {
         this.setState({size: event.target.value});
         }
     
