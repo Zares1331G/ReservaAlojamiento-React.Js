@@ -1,13 +1,13 @@
-const countrys = ["Todos los paises","Argentina","Brasil", "Chile","Uruguay","Mexico"];
-const prices = ["Todos los precios","$","$$","$$$","$$$$"];
-const sizes = ["Todos los tamaños", "Pequeño", "Mediano","Grande"];
+// const countrys = ["Todos los paises","Argentina","Brasil", "Chile","Uruguay","Mexico"];
+// const prices = ["Todos los precios","$","$$","$$$","$$$$"];
+// const sizes = ["Todos los tamaños", "Pequeño", "Mediano","Grande"];
 
-this.state = {country: "Todos los paises"}
-        this.state = {price : "Todos los precios"}
-        this.state = {size : "Todos los tamaños"}
+// this.state = {country: "Todos los paises"}
+//         this.state = {price : "Todos los precios"}
+//         this.state = {size : "Todos los tamaños"}
 
-function Filtros (props) {
-  const {info} = props;
+function Filter (props) {
+  
   return(
     <div className="form row filtro">
       <div className="form-group col-sm-3">
@@ -17,7 +17,7 @@ function Filtros (props) {
         <Date />
       </div>
       <div className="form-group col-sm-2">
-        <Countrys country={info}/>
+        <Countrys />
       </div>
       <div className="form-group col-sm-2">
         <Prices />
