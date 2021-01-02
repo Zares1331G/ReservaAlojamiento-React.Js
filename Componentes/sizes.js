@@ -1,15 +1,18 @@
-const sizes = ["Todos los tamaños", "Pequeño", "Mediano","Grande"];
+// const sizes = ["Pequeño", "Mediano","Grande"];
 
-function Sizes (props){
+function Sizes (){
     return(
         <div>
-            <select className="form-control">
-                {sizes.map((size,index)=>(
-                    <option key={index} value={size}>
-                        {size}
-                    </option>
-                ))}
-            </select>
+            <form>
+                <select className="form-control">
+                <option selected disabled hidden>Tamaños</option>
+                    {sizes.map((size,index)=>(
+                        <option key={index} value={size}>
+                            {size}
+                        </option>
+                    ))}
+                </select>
+            </form>
         </div>
     )
 }

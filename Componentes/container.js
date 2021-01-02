@@ -18,7 +18,6 @@ function Container(props){
                 </div>           
             </div>            
         </div>        
-    );
-    
+    );    
 }
 

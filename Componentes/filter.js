@@ -1,13 +1,10 @@
-// const countrys = ["Todos los paises","Argentina","Brasil", "Chile","Uruguay","Mexico"];
-// const prices = ["Todos los precios","$","$$","$$$","$$$$"];
-// const sizes = ["Todos los tamaños", "Pequeño", "Mediano","Grande"];
-
-// this.state = {country: "Todos los paises"}
-//         this.state = {price : "Todos los precios"}
-//         this.state = {size : "Todos los tamaños"}
+const countrys = ["Argentina","Brasil", "Chile","Uruguay","Mexico"];
+const prices = ["$","$$","$$$","$$$$"];
+const sizes = [4, 8, 9, 11,14 , 16, 19, 20, 21, 22, 23, 25, 32, 40, 42];
+const pricesNum = [1, 2, 3, 4];
 
 function Filter (props) {
-  
+  const {handleChangeCountry, handleChangePrice, handleChangeRoom}=props;
   return(
     <div className="form row filtro">
       <div className="form-group col-sm-3">
@@ -17,40 +14,49 @@ function Filter (props) {
         <Date />
       </div>
       <div className="form-group col-sm-2">
-        <Countrys />
+        {/* <Countrys 
+          handleChangeCountry={handleChangeCountry}
+          stateArray={stateArray}
+          /> */}
+        <form>
+          <select className="form-control" onChange={handleChangeCountry}>
+              <option selected disabled hidden>Paises</option>
+              {countrys.map((country,index)=>(
+                  <option key={index} value={country}>
+                            {country}
+                  </option>
+              ))}
+          </select>        
+        </form>  
       </div>
       <div className="form-group col-sm-2">
-        <Prices />
+        {/* <Prices /> */}
+        <form>
+          <select className="form-control" onChange={handleChangePrice}>
+            <option selected disabled hidden>Precios</option>
+                {pricesNum.map((price,index)=>(
+                  <option key={index} value={price}>
+                    {price}
+                  </option>
+                ))}
+            </select>
+        </form>
       </div>
       <div className="form-group col-sm-2">
-        <Sizes />
-      </div>       
+        {/* <Sizes /> */}
+        <form>
+          <select className="form-control" onChange={handleChangeRoom}>
+            <option selected disabled hidden>Cuartos</option>
+              {sizes.map((size,index)=>(
+                <option key={index} value={size}>
+                  {size}
+                </option>
+              ))}
+          </select>
+        </form>
+      </div>   
+          
     </div>
   )
 }
 
-//<div className="form row filtro">          //     
-          //   <div className="form-group col-sm-2">              
-          //       <select 
-          //       className="form-control" 
-          //       value={this.state.country} 
-          //       onChange={this.handleChangeCountry} >
-          //           {countrys.map((country,index)=> 
-          //           {return(<option key={index} value={country}>{country}</option>)})}
-          //       </select>
-          //   </div>
-          //   <div className="form-group col-sm-2">
-          //       {/* <select className="form-control" value={this.state.price} onChange={this.handleChangePrice}>
-          //           {prices.map((price,index)=>
-          //           {return(<option key={index} value={price}>{price}</option>)})}
-          //       </select> */}
-          //   </div>
-          //   <div className="form-group col-sm-2">
-          //       {/* <select className="form-control" value={this.state.size} onChange={this.handleChangeSize}>
-          //           {sizes.map((size,index)=>
-          //           {return(
-          //           <option 
-          //           key={index} 
-          //           value={size}>                      
-          //           {size}</option>)})}
-          //       </select> */}

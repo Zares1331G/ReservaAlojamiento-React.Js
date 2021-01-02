@@ -1,4 +1,4 @@
-function Date (props){
+function Date (){
     return(
         <div>
             <input className="form-control input-field" 

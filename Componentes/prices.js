@@ -1,17 +1,19 @@
-const prices = ["Todos los precios","$","$$","$$$","$$$$"];
+//const prices = ["$","$$","$$$","$$$$"];
 
 
-function Prices (props){
-    const {country} = props;
+function Prices (){
     return(
         <div>
-            <select className="form-control">
-                {prices.map((price,index)=>(
-                    <option key={index} value={price}>
-                        {price}
-                    </option>
-                ))}
-            </select>
+            <form>
+                <select className="form-control">
+                <option selected disabled hidden>Precios</option>
+                    {prices.map((price,index)=>(
+                        <option key={index} value={price}>
+                            {price}
+                        </option>
+                    ))}
+                </select>
+            </form>
         </div>
     )
 }
