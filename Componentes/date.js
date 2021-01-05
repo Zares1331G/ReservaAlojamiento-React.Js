@@ -1,9 +1,11 @@
 function Date (){
     return(
         <div>
-            <input className="form-control input-field" 
+            <input 
+            className="form-control input-field" 
             type="date" 
-            name="infentrada" />
+            name="infentrada" 
+            />
         </div>
     )
 }
