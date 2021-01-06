@@ -2,27 +2,60 @@ class App extends React.Component {
   state={
     result:[...hotelsData],
     country:"",
-    price:0,
+    price:"Todos los precios",
     room:"Todos los tamaños"
   };
+
+  priceFunction = (num) => {
+    const {price} = this.state;
+    if(price === "$"){
+      return num === 1;
+    }
+    if(price === "$$"){
+      return num === 2;
+    }
+    if(price === "$$$"){
+      return num === 3;
+    }
+    if(price === "$$$$"){
+      return num === 4;
+    }
+  }
   
+  sizeFunction = (num) => {
+    const {room} = this.state;
+    if(room === "Pequeño"){
+      return num <= 10;
+    }
+    if(room === "Mediano"){
+      return num >10 && num <= 20;
+    }
+    if(room === "Grande"){
+      return num > 20;
+    }
+  }
+
   handleChange = (e) =>{
     this.setState({[e.target.name] : e.target.value})
   }
 
   render(){
-    const{country, result, price}=this.state;
+    const{country, result, price, room}=this.state;
     var box = [];
     if(country === ""){
       box = result;
     }else{
       box =result.filter(x => x.country === country);
     }
-    if(price > 0){
-      box = box.filter(x => x.price === parseInt(price,0));
+    if(price  !== "Todos los precios"){
+      box = box.filter(x => {
+        return this.priceFunction(x.price)
+      });
     }
     if(room !== "Todos los tamaños"){
-      box = box.filter(x => x.rooms );
+      box = box.filter(x => {
+        return this.sizeFunction(x.rooms)
+      });
     }
 
     const {handleChange}=this;
@@ -38,14 +71,12 @@ class App extends React.Component {
         price={card.price} 
       />
     ));
+    
     return (      
       <div className="app">        
         <Header />
-        <Filter 
-          handleChange={handleChange}
-        />
+        <Filter handleChange={handleChange} />
         <div className="container">
-          <p>Aqui se vera lo que se carga: {this.state.country} + prices: {this.state.price}</p>
           <div className="row">
             {cards}
           </div>          
