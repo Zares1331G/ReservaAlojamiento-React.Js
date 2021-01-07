@@ -1,9 +1,14 @@
+moment.lang("es");
+const now = moment().format("LL");
+
 class App extends React.Component {
   state={
     result:[...hotelsData],
     country:"",
     price:"Todos los precios",
-    room:"Todos los tamaños"
+    room:"Todos los tamaños",
+    firstDate: now,
+    secondDate: now
   };
 
   priceFunction = (num) => {
@@ -36,11 +41,16 @@ class App extends React.Component {
   }
 
   handleChange = (e) =>{
-    this.setState({[e.target.name] : e.target.value})
+    if(e.target.name === "firstDate" || e.target.name === "secondDate"){      
+      this.setState({[e.target.name] : moment(e.target.value).format("LL")})
+    }else{
+      this.setState({[e.target.name] : e.target.value})
+    }
   }
 
   render(){
-    const{country, result, price, room}=this.state;
+    const{country, result, price, room, firstDate, secondDate}=this.state;
+    const {handleChange}=this;
     var box = [];
     if(country === ""){
       box = result;
@@ -57,8 +67,9 @@ class App extends React.Component {
         return this.sizeFunction(x.rooms)
       });
     }
-
-    const {handleChange}=this;
+    if(firstDate !== now && secondDate !== now){
+    }
+    
     const cards = box.map((card,index) =>(
       <Container
         key={index}
@@ -74,7 +85,10 @@ class App extends React.Component {
     
     return (      
       <div className="app">        
-        <Header />
+        <Header 
+        firstDate={firstDate}
+        secondDate={secondDate}
+        />
         <Filter handleChange={handleChange} />
         <div className="container">
           <div className="row">
