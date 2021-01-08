@@ -1,5 +1,8 @@
-moment.lang("es");
+moment.locale('es');
 const now = moment().format("LL");
+const last = moment().format("LL");
+
+
 
 class App extends React.Component {
   state={
@@ -7,8 +10,8 @@ class App extends React.Component {
     country:"",
     price:"Todos los precios",
     room:"Todos los tamaños",
-    firstDate: now,
-    secondDate: now
+    firstDate: new Date().valueOf(),
+    secondDate: new Date().valueOf() + 3456000000
   };
 
   priceFunction = (num) => {
@@ -42,16 +45,20 @@ class App extends React.Component {
 
   handleChange = (e) =>{
     if(e.target.name === "firstDate" || e.target.name === "secondDate"){      
-      this.setState({[e.target.name] : moment(e.target.value).format("LL")})
+      this.setState({[e.target.name] : parseInt(moment(e.target.value).valueOf())})
     }else{
       this.setState({[e.target.name] : e.target.value})
     }
   }
 
   render(){
+    moment.locale("es");
     const{country, result, price, room, firstDate, secondDate}=this.state;
     const {handleChange}=this;
     var box = [];
+    var timeFirst = moment(firstDate).format("LL");
+    var timeSecond = moment(secondDate).format("LL");
+
     if(country === ""){
       box = result;
     }else{
@@ -67,10 +74,10 @@ class App extends React.Component {
         return this.sizeFunction(x.rooms)
       });
     }
-    if(firstDate !== now && secondDate !== now){
-    }
     
-    const cards = box.map((card,index) =>(
+    const filterDate = result.filter(x => x.availabilityFrom >= firstDate && x.availabilityTo <= secondDate)
+    const cards = filterDate.length > 0 ? 
+    box.map((card,index) =>(
       <Container
         key={index}
         photo={card.photo}
@@ -81,13 +88,13 @@ class App extends React.Component {
         room={card.rooms}
         price={card.price} 
       />
-    ));
+    )) : <h1>No hay reservas para las fechas seleccionadas</h1>
     
     return (      
       <div className="app">        
         <Header 
-        firstDate={firstDate}
-        secondDate={secondDate}
+        timeFirst={timeFirst}
+        timeSecond={timeSecond}
         />
         <Filter handleChange={handleChange} />
         <div className="container">
