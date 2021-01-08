@@ -37,6 +37,21 @@ class App extends React.Component {
       return num === 4;
     }
   }
+
+  priceFunction2 = (num) => {    
+    if(num === 1){
+      return "$";
+    }
+    if(num === 2){
+      return "$$";
+    }
+    if(num === 3){
+      return "$$$";
+    }
+    if(num === 4 ){
+      return "$$$$";
+    }
+  }
   
   sizeFunction = (num) => {
     const {room} = this.state;
@@ -62,7 +77,7 @@ class App extends React.Component {
   render(){
     moment.locale("es");
     const{country, result, price, room, firstDate, secondDate}=this.state;
-    const {handleChange}=this;
+    const {handleChange, priceFunction2}=this;
     var box = [];
     var timeFirst = moment(firstDate).format("LL");
     var timeSecond = moment(secondDate).format("LL");
@@ -83,13 +98,10 @@ class App extends React.Component {
       });
     }
     if(firstDate !== now){
-      box = box.filter(x => {return this.isFirstDateInRAnge(x.availabilityFrom, x.availabilityTo, firstDate, secondDate)})
+      box = box.filter(x => {
+        return this.isFirstDateInRAnge(x.availabilityFrom, x.availabilityTo, firstDate, secondDate)
+      })
     }
-    // if(secondDate !== last){
-    //   box = box.filter(x => x.availabilityTo <= secondDate)
-    // }
-    
-    //const filterDate = result.filter(x => x.availabilityFrom >= firstDate && x.availabilityTo <= secondDate)
 
     const cards =box.length > 0 ? box.map((card,index) =>(
       <Container
@@ -100,9 +112,7 @@ class App extends React.Component {
         city={card.city}
         country={card.country}
         room={card.rooms}
-        price={card.price}
-        firstDate={card.availabilityFrom}
-        secondDate={card.availabilityTo}
+        price={priceFunction2(card.price)}
       />
     )) : <h1>No hay reservas para los filtros seleccionados</h1>
     

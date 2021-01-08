@@ -7,8 +7,6 @@ function Container(props){
                     <img className="photos" src={photo} width="100%"/>
                 </div>    
                 <div className="card-body">
-                    <p>Fecha desde {moment(firstDate).format('LL')}</p>
-                    <p>Fecha hasta {moment(secondDate).format('LL')}</p>
                     <h4>{name}</h4>
                     <p>{description}</p>
                     <p>{city}, {country}.</p>
