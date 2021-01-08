@@ -106,7 +106,7 @@ const hotelsData = [
     photo: './images/casa-turquesa.jpg',
     description: 'Casa Turquesa es una histórica mansión del siglo XVIII que recrea el encanto típico de Paraty, una de las herencias coloniales más bellas de Brasil, declarada Patrimonio Mundial de la Humanidad por la UNESCO.',
     availabilityFrom: today.valueOf(),
-    availabilityTo: today.valueOf() + 432000000, // 5 days
+    availabilityTo: today.valueOf() + 172800000, // 5 days
     rooms: 9,
     city: 'Río de Janeiro',
     country: 'Brasil',

@@ -1,6 +1,6 @@
 moment.locale('es');
-const now = moment().format("LL");
-const last = moment().format("LL");
+const now =new Date().valueOf();
+const last = new Date().valueOf() + 3456000000;
 
 
 
@@ -10,9 +10,17 @@ class App extends React.Component {
     country:"",
     price:"Todos los precios",
     room:"Todos los tamaños",
-    firstDate: new Date().valueOf(),
-    secondDate: new Date().valueOf() + 3456000000
+    firstDate: now,
+    secondDate: last
   };
+
+  isFirstDateInRAnge = (availabilityFrom, availabilityTo, firstDate, secondDate) =>{
+    if(firstDate >= availabilityFrom  && secondDate <= availabilityTo){
+      
+      return true
+    }
+    return false
+  }
 
   priceFunction = (num) => {
     const {price} = this.state;
@@ -74,10 +82,16 @@ class App extends React.Component {
         return this.sizeFunction(x.rooms)
       });
     }
+    if(firstDate !== now){
+      box = box.filter(x => {return this.isFirstDateInRAnge(x.availabilityFrom, x.availabilityTo, firstDate, secondDate)})
+    }
+    // if(secondDate !== last){
+    //   box = box.filter(x => x.availabilityTo <= secondDate)
+    // }
     
-    const filterDate = result.filter(x => x.availabilityFrom >= firstDate && x.availabilityTo <= secondDate)
-    const cards = filterDate.length > 0 ? 
-    box.map((card,index) =>(
+    //const filterDate = result.filter(x => x.availabilityFrom >= firstDate && x.availabilityTo <= secondDate)
+
+    const cards =box.length > 0 ? box.map((card,index) =>(
       <Container
         key={index}
         photo={card.photo}
@@ -86,9 +100,11 @@ class App extends React.Component {
         city={card.city}
         country={card.country}
         room={card.rooms}
-        price={card.price} 
+        price={card.price}
+        firstDate={card.availabilityFrom}
+        secondDate={card.availabilityTo}
       />
-    )) : <h1>No hay reservas para las fechas seleccionadas</h1>
+    )) : <h1>No hay reservas para los filtros seleccionados</h1>
     
     return (      
       <div className="app">        
